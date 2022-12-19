@@ -1,0 +1,8 @@
+create an app / module 
+after creating the project and opening in vs code 
+open vs code terminal
+
+
+
+1.workon //Name of your environment
+2.python manage.py startapp //nameofyourmodule/app
