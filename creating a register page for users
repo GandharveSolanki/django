@@ -1,0 +1,31 @@
+use command 
+work on random(random is name of my environment)
+then python manage.py startapp accounts
+this creates an app 
+then create urls.py in that app 
+
+
+//copy this in your urls.py
+from django.urls import path
+from . import views
+
+urlpatterns=[
+    path('',views.register,name='register')
+]
+
+then in views.py do this 
+defind the register function ...
+
+
+after that in (main) urls.py of project 
+do the routing 
+ path('register/',include('accounts.urls') )
+ 
+ now the path will be http://127.0.0.1:8000/register/
+ if you want the path to be http://127.0.0.1:8000/register/random/
+ then make 
+ urlpatterns=[
+    path('random',views.register,name='register')
+]
+ add above statement and then you are good to go 
+ create html page in template 
