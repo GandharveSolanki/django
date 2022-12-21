@@ -1,0 +1,22 @@
+if you are entering data in to the form then you are sending a post request and that post request will be sent to   <form action="register" method="post">
+action="register" route  a post request will be sent now you have to handle that in views.py 
+
+now as i said a post req will be sent so you will get data on register route and you have to handle that data 
+so do this 
+def register(request):
+    if request.method=='POST':
+        first_name=request.POST['name']
+        username=request.POST['username']
+        email=request.POST['email']
+        phone=request.POST['phone_number']
+        password=request.POST['password']
+        password_again=request.POST['pass']
+    return render(request,'register.html')
+    
+    by doing above you get the data from the database but how will you save that data in your database  you can create a model and do that thing but django provide you 
+    with user model object it is there in the user framework ..
+    
+    The way you use it is you import it in views.py 
+    from django.contrib.auth.models import User,auth //for login path also import auth 
+    
+    now lets save the above data so create an user object 
