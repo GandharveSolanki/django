@@ -1,0 +1,26 @@
+Now at this point you have created an admin panel and you have added models to your admin panel now if you try to load the image in index.html from database it will
+not load as whenever you are uploading an image it should go in a particular folder 
+
+now move to settings.py and add the path for your media files 
+
+in MEDIA_ROOT you have to specify the location of your media files 
+
+so we do MEDIA_ROOT=os.path.join(BASE_DIR,'media')//media is the name of the folder where the media files will be stored you can give this any name.
+
+you also have to specify the url which you are going to use in your views 
+MEDIA_URL='/media/'
+
+now we also have to change the main urls.py that is the main urls.py (you get it right)
+in url patterns you have to add urls 
+
+urlpatterns=urlpatterns+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+This static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) is the path  in which you specify the media url  you have to pass two parameter one for the url and one
+for the root and both are coming from setting so we use settings keyword there 
+you will get error becuase it is not able to find static and settings ...
+so add
+
+form django.conf import settings
+from django.conf.urls.static import static 
+
+now you do usual shit in views.py create object and send to index.html
+and in index.html remeber to use dest.img.url in the image section
