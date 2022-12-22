@@ -1,0 +1,43 @@
+so same design path (of both urls.py) after that in views you define the function
+like::::
+def login(request):
+    if request.method=='POST':
+        username=request.POST['username']
+        password=request.POST['password']
+
+        user=auth.authenticate(username=username,password=password)
+        if user is not None:
+            auth.login(request,user)
+            return redirect("/")
+        else:
+            messages.info(request,'invalid credentials')
+            return redirect('login')
+    else:
+        return render(request,'login.html')//if it isnt a post request then its is a get req and server is asking for the login file so we return it 
+        
+        .login() function django
+        If you have an authenticated user you want to attach to the current session - this is done with a login() function. To log a user in, from a view, 
+        use login() .  It takes an HttpRequest object and a User object. login() saves the user's ID in the session, using Django's session framework.
+        
+        now once you have logged an dyou are back on your home page the register and login option should disapper and logout option should come such it can indicate
+        that you have logged in so in index.html you add conditions with the jinja code 
+         {% if user.is_authenticated %}
+        <a href="#">Hello, {{user.username}}</a>
+        <a href="accounts/logout">Logout</a>
+        {% else %}
+        <a href="accounts/register">register</a>
+        <a href="account/login">login</a>
+        {% endif %}
+        
+        
+        now the moment you click it should log you out and it should give you the  home page with the initial options available 
+        add this  path('logout',views.logout,name='logout') then  do the mapping in the main urls.py file also
+        
+        but before this add this views.py 
+        
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
+    
+     path('logout',views.logout,name='logout'), in urls.py
+     
