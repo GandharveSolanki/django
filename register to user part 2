@@ -5,12 +5,12 @@ now as i said a post req will be sent so you will get data on register route and
 so do this 
 def register(request):
     if request.method=='POST':
-        first_name=request.POST['name']
+        name=request.POST['name']
         username=request.POST['username']
         email=request.POST['email']
         phone=request.POST['phone_number']
-        password=request.POST['password']
-        password_again=request.POST['pass']
+        password1=request.POST['password']
+        password2=request.POST['pass']
     return render(request,'register.html')
     
     by doing above you get the data from the database but how will you save that data in your database  you can create a model and do that thing but django provide you 
@@ -20,3 +20,21 @@ def register(request):
     from django.contrib.auth.models import User,auth //for login path also import auth 
     
     now lets save the above data so create an user object 
+    
+    
+    user=User.objects.create_user( username=username,password=password1,email=email,first_name=name)
+    see username ,password ,email all these fields are available in the model object.. now as you have created the object you hvae to now save this data.
+    by user.save()
+    then redirect to the home page 
+    return redirect('/')
+    but before using this you have to import it so you must be having this statement from django.shortcuts import render
+    so update this to from django.shortcuts import render,redirect
+    in above brackets you pass all the parameters..
+    
+    also remember to add {% csrf_token %} after <form action=""> statement 
+    
+    now some authentication stuffs
+    before that if you want to see if some statement is getting executed or not just do print('anything') this will print shit in the console so you can debug 
+    
+    now add this in your function in views..
+    
