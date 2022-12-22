@@ -38,3 +38,5 @@ def register(request):
     
     now add this in your function in views..
     
+    
+    ///now your task is to find how to extend the user model to incoporate phone number and address etc 
