@@ -5,4 +5,6 @@ so lets say for all the product pages you create a base file and you have your b
  {% block content %}
   <h1>Hello my G</h1>
   {% endblock %}
+see if you want to learn this concept learn from https://www.geeksforgeeks.org/extends-django-template-tags/
 
+and also run with django then only you will see the correct output..
