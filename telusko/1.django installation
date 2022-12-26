@@ -1,0 +1,46 @@
+once you have python and pip installed 
+
+now for diff projects you should have diff config of django 
+lets say you are working with diff projects and you want to have diff set of django there 
+so basically you want a seperate space for your project from the entire system such that which will not be affecting the other projects you have  
+
+and the way you can do that is by installing virtual environment wrapper 
+in cmd type 
+pip install virtualenvwrapper-win
+
+after this we get the setup for the environment 
+now we actually we want to create that environment 
+
+so in cmd type mkvirtualenv projectEnv
+
+you have created environment name as projectEnv in your system also..
+now once you are in the environment then you have to install django 
+once in projectEnv type pip install django 
+
+now we have installed django in our environment 
+
+create a sperate folder in E drive lets say you made a project name djangoprojects
+
+now create a project by django-admin startproject SecondProject 
+now if you see that SecondProject you will see manage.py file and one folder now this will only get created if you are in your virtual environment 
+otherwise you gotta activate your virtual environment if somehow after creating your firtual environment you closed cmd accidently 
+
+
+so activate the virtual environment use workon projectEnv
+
+and this is all it open this project with vs code 
+
+or if you want to run the server with cmd you can cd SecondProject
+then you can do python manage.py runserver
+
+
+now next steps 
+
+open in vs code in terminal type workon projectEnv
+
+now in your project you will have differnet apps like if you are making an ecommerce you will have login system as a diff app and cart system as diff app etc
+
+
+so to create apps we use python manage.py startapp calc
+this will create app named as calc 
+
