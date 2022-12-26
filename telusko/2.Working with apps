@@ -1,0 +1,25 @@
+you have create an seperate urls.py in your app 
+and once you create you have to copy main urls.py contents which are
+
+from django.urls import path
+from . import views  //this statement states from all import views  ...
+
+urlpatterns=[
+    path('',views.index,name='index')//this is how u define a path..
+]
+
+
+you define index function views.py ..
+
+now in main urls.py you have to do the mapping as well ...
+urlpatterns = [
+    path('',include('newWebsite.urls')),   when someone types 127../ something then the user is asking for the home page so the browser will send a req for home page then the req goes to newWebsite.urls and then in that mapping is done and that views.index function gets triggered and you return a response 
+    path('admin/', admin.site.urls),
+    path('accounts/',include('accounts.urls') ),
+]
+//remember to import paths right 
+
+now see put all your html files in template folder now you django should know where are all the templates/files located 
+in settings you have to change your DIRS now you have to specify the path of your template 
+
+ 'DIRS': [os.path.join(BASE_DIR,'Templates')],
