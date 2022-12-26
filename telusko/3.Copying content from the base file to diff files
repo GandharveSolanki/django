@@ -1,0 +1,8 @@
+lets say you have project page so the layot /design for all the products pages will be same right  only the info will be diff and that will come from database ..
+
+so lets say for all the product pages you create a base file and you have your base content and the content which you want to reuse again and again can be kept between
+
+ {% block content %}
+  <h1>Hello my G</h1>
+  {% endblock %}
+
