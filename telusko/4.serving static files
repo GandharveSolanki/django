@@ -1,0 +1,7 @@
+create a static folder in your project and then add images,styles and js folder in it..
+
+now we have to specify the path for this static folder so that django can look into it..
+
+so go to settings file and 
+
+this cleared all doubts related to static files
