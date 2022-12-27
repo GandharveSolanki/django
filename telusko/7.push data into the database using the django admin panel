@@ -1,0 +1,21 @@
+you can push data into your database using the django admin panel .....
+
+we have to create a superuser for that python manage.py help 
+the moment you type this you get all types of commands 
+
+python manage.py createsuperuser
+
+now you can visit the admin panel by 127..something/admin
+
+now as you login into the admin panrl you can see you can add more users and more groups as per your need 
+now in your admin.py you have to register the model 
+
+so you can do the entry from your admin panel only ...
+
+from django.contrib import admin
+from .models import Destination
+
+# Register your models here.
+
+
+admin.site.register(Destination)
