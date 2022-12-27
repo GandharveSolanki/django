@@ -1,0 +1,55 @@
+in settings file you will find a section such as database 
+
+include /update these things 
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'firstproject', #this is your database name
+        'USER':'postgres',   #pg admin4 username &password below
+        'PASSWORD':'Solanki@123',
+        'HOST':'localhost'  //specify on which machine you have this database 
+    }
+}
+
+//these are the above things you need to specify for connecting with databases but postres being a diff soft and django being a diff software how will they connect 
+
+so in vs code terminal do pip install psycopg2 //this is a connector  
+
+now if you want to convert a class into a model then you have to give that class more power and you can do that by speiyfing models.Model in the parenthesis and 
+with orm concept the tables will get created auto matically but still you have to do a lot 
+
+
+
+class Destination(models.Model):
+    name=models.CharField(max_length=100)
+    img=models.ImageField()
+    desc=models.TextField()
+    price=models.IntegerField()
+    offer=models.BooleanField(default=False)
+
+
+now if you have to create a table you have to migrate your models to the database for that you have to pass a command 
+python manage.py makemigrations
+and before this you have to mention in settings 
+in installed apps section ...
+you have to mention your application name whatever you are working with 
+add this in it 
+'travelwebsite.apps.TravelwebsiteConfig',
+see travelwebsite is the name of your app and remember with Config the first letter of the app should be capital ..
+
+do pip install pillow if it is not there 
+
+after this python manage.py makemigrations
+and all your migrations will be done 
+
+but still a table is not made there because we have just created a migrations file 
+
+so now have to write this command  
+python manage.py sqlmigrate travelwebsite 0001
+
+now after this just one more command 
+python manage.py migrate 
+
+now you will get a table from your table from a class that is the magic of orm
