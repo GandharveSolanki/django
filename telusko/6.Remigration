@@ -1,0 +1,4 @@
+ok somehow if some field lets say price is not added beacuse you forgot to use () parenthersis in Integerfield so you can do remigration to update this 
+
+just type python manage.py makemigrations 
+then after the process type python manage.py migrate 
