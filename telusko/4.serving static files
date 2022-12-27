@@ -1,7 +1,45 @@
-create a static folder in your project and then add images,styles and js folder in it..
+step1-create a static folder in your project and then add images,styles and js folder in it..
 
-now we have to specify the path for this static folder so that django can look into it..
+now we have to specify the path for this static f
+
+older so that django can look into it..
 
 so go to settings file and 
 
-this cleared all doubts related to static files
+this cleared all doubts related to static files https://www.educba.com/django-static-files/
+
+now after you are done with step 1  
+
+but your django should know where to look for these files 
+
+so in settings file 
+you will have this STATIC_URL = '/static/'
+
+so we will inform django where it will find all the static files by 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+
+ok now django know you have all static files in this static folder but django wants to pick all these files and wants to put in his own created folder basically a django
+folder for better process 
+
+so we do that by STATIC_ROOT = os.path.join(BASE_DIR, 'assets')///so django will put all the static files in this folder but way you refer the static files is by 
+STATIC_URL = '/static/'
+
+now you have to tell django to create this folder assets 
+python manage.py collectstatic
+
+now after doing all this you have to make changes in your html files also 
+
+in top of the html file add 
+{% load static %}
+in every href of images or css you have to add {%static%}
+
+like this <link rel="stylesheet" href="{%static 'css/style.css' %}">
+
+
+<img src="{%static 'images/1.jpg' %}" alt="">
+<script src="{%static 'js/script.js' %}"></script>
+now you are done
+
+like example 
+
+
