@@ -1,0 +1,99 @@
+1.So setup project create your app 
+then create urls.py in your app and in urls.py add 
+below statements
+from django.urls import path  #path is just a default django function used to configure urls 
+from . import views 
+
+also add urlpatterns 
+urlpatterns=[
+    path('',views.index,name='index')
+]
+
+create template folder add files then in settings.py in template section update dirs 
+as
+'DIRS': [os.path.join(BASE_DIR,'templates')],
+
+and in installed apps section make entry of your app 
+lets say name of your app is posts 
+so do the entry in installed apps section as  'posts',
+
+and also update your main urls.py
+from django.urls import path,include //you just have updated this line by adding ,include 
+
+and then add the path  path('',include('posts.urls'))
+
+now we create a model in model.py create a new django model 
+
+like you will see like this 
+models.CharField(max_length=100, null=True, blank=True)
+now few imp things 
+From docs:
+
+null If True, Django will store empty values as NULL in the database. Default is False.
+
+blank If True, the field is allowed to be blank. Default is False.
+
+default The default value for the field.
+
+You can use "default" to set the value that will be used for the field in question should your code not explicitly set it to a value.
+
+Use "blank" for form validation purposes - blank=True will allow the field to be set to an empty value
+
+Use "null" if you would like to store an empty value as "null" in the DB. Often it's preferred, 
+however, to set blank values to an empty string or to 0 as appropriate for a given field.
+
+like this is the model that you have created 
+class Post(models.Model):
+    title=models.CharField(max_length=100)
+    body=models.CharField(max_length=100000)
+    created_at=models.DateTimeField(default=datetime.now,blank=True)
+    
+    here with blank=True 
+    blank determines whether the field will be required in forms. This includes the admin and your custom forms. 
+    If blank=True then the field will not be required, whereas if it's False the field cannot be blank.
+
+The combo of the two is so frequent because typically if you're going to allow a field to be blank in your form, you're going to also need your database to allow NULL
+values for that field. The exception is CharFields and TextFields, which in Django are never saved as NULL. Blank values are stored in the DB as an empty string ('').
+
+A few examples:
+
+models.DateTimeField(blank=True) # raises IntegrityError if blank
+
+so thats why we gave a default value as well 
+
+
+
+
+part2
+
+Now we need to make migrations and migrate 
+so do python manage.py makemigrations
+then python manage.py migrate 
+this will migrate everything to the database which is default sqllitte
+
+now create a superuser 
+your credentials are username-gandharvsolanki
+password- Solanki@123
+
+now we have migrated the model into the database but we havent yet registered that model in the  admin panel 
+
+so in admin.py 
+do from .models import Post //Post is the name of your model 
+
+Now register your model as well by 
+admin.site.register(Post)
+
+now you can make entry through the admin panel and now if you want to show thse enrty in your html file what you can do 
+is in your views.py 
+from .models import Post 
+
+now we use for loop and show data but we want the latest post to be on the top so for that use the reversed keyword
+in the for loop 
+
+we include titile desc date in the a tag so that wherever we click we get to see the full page  
+
+now we willl use the concept of dynamic url 
+which you can easily understand by the code
+
+
+
