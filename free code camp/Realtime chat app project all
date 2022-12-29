@@ -1,0 +1,57 @@
+set up the project then create an app 
+
+and mention the entry of the app in the installed apps 
+and in templates section of settings update dirs
+
+in the app urls.py 
+add
+from django.urls import path
+from . import views 
+
+now we setup the models for this project one will be for the chatroom and one will be for the messages 
+
+so in models.py
+in models.py 
+first import 
+
+from datatime import datetime //this will give the current date and time
+
+now after creating the model we have to make migrations..
+so python manage.py makemigrations
+python manage.py migrate
+
+now we create a superuser by typing the command in the vscode terminal 
+python manage.py createsuperuser
+
+your credentials are username:gandharvesolanki
+                     password:Solanki@123
+                     
+                     
+Now we have to register this models in our admin file 
+so in admin.py 
+from .models import Room,Message
+above two models you created 
+
+
+and then we gotta register the model and we do that by
+
+admin.site.register(Room)
+admin.site.register(Message)
+
+now what we want to implement is when someone types the room name and wants to enter the room a new link should open where user gets entered into the room 
+so for that if the room already exists we should just add the user into the room and if the user does not exist then we should create a new roon ..
+
+
+so in our app urls.py
+now we set paths for the rooms there can be many rooms so we have to use dynamic routing
+
+so our form in home.html will be posting to checkview url and at these url we do the checking so import the models also in views.py
+
+now the form which is present in the  room.html we will submit that form with the help of ajax
+
+With Ajax, web applications can send and retrieve data from a server asynchronously without interfering with the display and behaviour of the existing page.
+
+to load ajax below script should be there
+<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+
