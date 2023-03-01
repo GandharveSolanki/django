@@ -1,0 +1,85 @@
+for creating project in cmd
+E:
+then django-admin startproject todolist
+then python manage.py startapp app
+
+after this create urls.py in your app then make entry of your app in settings.py 
+then add this in your urls.py
+from django.urls import path
+from . import views
+
+urlpatterns=[
+    
+]
+
+in your models.py
+from django.contrib.auth.models import User//we are including the user model as it provides with name username password etc ..
+# Create your models here.
+
+class Task(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)//a user can have many task so this is one to many relationship also on_delete=models.CASCADE 
+    // means if user gets deleted all the task related to it will also get deleted null=True means in database this user field can have a null value blank=true means 
+    //if somebody submits a form this field can be blank..
+    title=models.CharField(max_length=300)
+    description=models.TextField(null=True,blank=True)
+    complete=models.BooleanField(default=False)//intitally task will not be completed so complete is false 
+    create=models.DateTimeField(auto_now_add=True)//we can the current date and time of the task created so auto_now_add=True will do that for us ..
+    
+     def __str__(self):
+        return self.title//https://stackoverflow.com/questions/45483417/what-is-doing-str-function-in-django //read the second ans
+        
+      class Meta:
+        ordering = ['complete'] // we are ordering by complete any complete item will be sent to the bottom of the list...
+        
+        now after doing this we have to do migrations
+        python manage.py makemigrations
+        python manage.py migrate
+        
+        now create a superuser 
+        python manage.py createsuperuser 
+        
+      now register the models in your admin panel 
+      
+      from .models import Task
+# Register your models here.
+admin.site.register(Task)
+
+
+now to know how the f
+class Task_List(ListView):
+    model=Task // is this working see this article in the ListView section you get your ans https://dennisivy.com/django-class-based-views
+    
+    //default name of the list of objects that will be passed to html is object_list you can change its name also everything is mentioned in the article...
+    
+    or like this 
+    class Task_List(ListView):
+       model=Task
+       context_object_name='tasks'
+       
+    now lets say we need a detail view of these objects for that we use detailview 
+    detail view returns all the information about a single item 
+    
+    class Task_Detail(DetailView):
+    model=Task
+    context_object_name='task'
+now  detail View by default looks for the parameter in the url by default it looks for the value of parameter pk
+so do like this in urls.py of your app   path('task/<int:pk>/',Task_Detail.as_view(),name="Detail"),
+
+now its time to use Createview for that 
+we gotta impost like this By default CreateView looks for a template with the prefix of the model name (task) and the suffix of _form.html
+
+class Task_Create(CreateView):
+    model=Task
+    fields='__all__'
+    success_url=reverse_lazy('tasks')
+
+
+
+//by default createview itself gives the model form to work with you initialize the model in create view and it will create a form based on that model..
+we can choose which fields we want to include like this Field=['title'] etc but if you want all the fields 
+when this form is submitted we want to redirect the user to a page we use reverselazy which just redirects so in success_url attribute which is provided by the 
+createView   
+now to show form fields use {{form.as_p}}
+use .as_p for showing in the paragraph style
+
+
