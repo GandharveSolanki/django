@@ -83,3 +83,21 @@ now to show form fields use {{form.as_p}}
 use .as_p for showing in the paragraph style
 
 
+if you leave the action as ="" then it posts on the same route ..
+
+<td><a href="{%url 'update' task.id%}">Update</a></td> remember update is the name we specify in the urls.py
+
+see if you do {{request.user}} it will show you your name if you are logged in your admin panel otherwise it will show anonymous user 
+we use login view to do login authentication  see one more thing if you want to know how the session is createad and all refer 56:00 part of the video
+
+//login and logout functionality
+
+django uses sessions to register a user 
+https://ccbv.co.uk/  //refer this for all the authentication views 
+login view already provides us with the form 
+
+//now to restrict  the pages to the user 
+we use mixin for it also in settings.py change LoginUrl='tasks' as it was redirecting to the defualt path 
+
+Add from django.contrib.auth.mixins import LoginRequiredMixin
+in views.py and then add 
